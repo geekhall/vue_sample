@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数实践</title>
+    <style>
+        div{
+           width: 200px;
+           height: 200px;
+           background: #58a; 
+           margin:2rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="ad"></div>
+
+    <div id="ad2"></div>
+    <script>
+        // 需求-1 点击div 2s 后颜色变成粉色
+        let ad = document.getElementById('ad');
+        ad.addEventListener("click", function(){ 
+            // 注意这里不能在定时器种直接使用this，
+            // 因为定时器中的this指向window。
+            // 所以这里需要使用self临时保存this。
+            let self = this;
+            setTimeout(function(){
+                console.log(self);
+                console.log(this);
+                // 这里使用this会报错，因为当前内层函数的this指向了window
+                // this.style.background = 'pink';
+
+                // 这里在内层函数中找不到self，就会继续向外层函数查找self
+                self.style.background = 'pink';
+
+            }, 2000);
+        })
+
+        // 而有了箭头函数之后，上面的问题就可以得到解决了
+        let ad2 = document.getElementById('ad2');
+        ad2.addEventListener("click", function(){ 
+            setTimeout(() => {
+                console.log(self);
+                console.log(this);
+                this.style.background = 'pink';
+            }, 2000);
+        })
+        // 需求-2 从数组中返回偶数的元素
+        const arr = [1,2,3,4,5,6];
+        const result = arr.filter(function(item){
+            if(item %2 ===0){
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        console.log(result);
+
+        const result2 = arr.filter(item => item % 2 === 0);
+        console.log(result2);
+
+        function connect({host="127.0.0.1", username, password, port}){
+            console.log(host);
+            console.log(username);
+            console.log(password);
+            console.log(port);
+        };
+        connect({
+            // host: 'localhost',
+            username: 'root',
+            password: '123456',
+            port: 3306
+        });
+
+
+        // ES5 的方式
+        // Arguments是一个对象
+        function normal_fn(){
+            console.log(arguments);
+        }
+
+        normal_fn('a','b','c',100)
+
+        // ES6 的方式（REST方式）
+        // args是一个数组，参数处理更加灵活。
+        function normal_fn2(arg1, arg2, ...args){
+            console.log(args);
+        }
+
+        normal_fn2('a','b','c',200);
+
+
+        // ... 扩展运算符能将数组转换为逗号分隔的“参数序列”
+        const tfboys = ['易洋千玺','王源','王俊凯'];
+
+        function chunwan(){
+            console.log(arguments);
+        }
+
+        chunwan(tfboys);
+        chunwan(...tfboys);
+        chunwan('易洋千玺','王源','王俊凯');
+        // console.log(tfboys);
+        // console.log(...tfboys);
+
+
+        // 数组的合并
+        const kuaizi = ['王太利', '肖央'];
+        const fenghuang = ['曾毅', '玲花'];
+        const zuixuanxiaopingguo = kuaizi.concat(fenghuang);
+        const zxxpg = [...kuaizi, ...fenghuang]
+        console.log(zuixuanxiaopingguo);
+        console.log(zxxpg);
+
+
+    </script>
+</body>
+</html>

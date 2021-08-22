@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol Sample</title>
+</head>
+<body>
+    <script>
+        let s = Symbol();
+        console.log(s, typeof s);
+
+        let s2 = Symbol("GeekHall");
+        let s3 = Symbol("GeekHall");
+
+        console.log(s2 === s3); // false 
+
+
+        let s4 = Symbol.for('GeekHall');
+        let s5 = Symbol.for('GeekHall');
+        console.log(s4, typeof s4);
+
+        console.log(s4 === s5); // true
+
+        // 不能与其他数据进行运算
+             
+
+
+        ///////////////////////////////////
+        // 可以使用Symbol安全地向对象追加方法：
+        ///////////////////////////////////
+        let game = {
+            name: '俄罗斯方块',
+            level:10,
+            up: function() {
+                console.log("up method");
+            }
+        }
+
+        let methods = {
+            up: Symbol(),
+            down: Symbol()
+        };
+
+        game[methods.up] = function() {
+            console.log("改变形状");
+        }
+
+        game[methods.down] = function() {
+            console.log("快速下降");
+        }
+
+        console.log(game);
+
+
+        ///////////////////////////////////
+        // 给对象添加Symbol类型的属性：
+        ///////////////////////////////////
+        let say = Symbol('say');
+        let zibao = Symbol('zibao');
+        let youxi = {
+            name: "狼人杀",
+            [say]: function() {
+                console.log("我可以发言");
+            },
+            [zibao]: function() {
+                console.log("我可以自爆");
+            }
+        };
+
+        console.log(youxi);
+        youxi[say]();       // 打印 我可以发言
+        youxi[zibao]();     // 打印 我可以自爆
+
+
+        ////////////////////////////////////
+        // Symbol内置属性
+        ////////////////////////////////////
+        class Person{
+            static [Symbol.hasInstance](param){
+                console.log("我被用来检测类型了！");
+            }
+        }
+
+        let o = {};
+        console.log(o instanceof Person); 
+
+
+
+        const arr = [1,2,3]
+        const arr2 = [4,5,6]
+        arr2[Symbol.isConcatSpreadable] = false;
+        console.log(arr.concat(arr2));
+
+        ////////////////////////////////////
+        // iterator
+        ////////////////////////////////////
+
+        const books = ['西游', '红楼','水浒', '三国'];
+
+        for (let book of books){
+            console.log(book);
+        }
+
+        let it = books[Symbol.iterator]();
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+
+
+        const actors = {
+            name: "四大才子",
+            code:[
+                "刘能",
+                "小沈阳",
+                "宋小宝",
+                "赵四"
+            ],
+            [Symbol.iterator](){
+                let index = 0;
+                let self = this;
+                return {
+                    next: function(){
+                        if (index < self.code.length){
+                            const result = {
+                                value: self.code[index], 
+                                done: false
+                            };
+                            index++;
+                            return result;
+                        } else {
+                            return {value:undefined, done: true};
+                        }
+                        
+                    }
+                };
+            }
+        }
+
+        for (let actor of actors){
+            console.log(actor);
+        }
+
+
+        function * gen(){
+            console.log("111");
+            yield '一只没有耳朵';
+
+            console.log("222");
+            yield '一只没有尾巴';
+
+            console.log("333");
+            yield '真奇怪';
+
+            console.log("444");
+        }
+
+        let iter = gen();
+        iter.next();
+        console.log("============华丽的分割线1============");
+        iter.next();
+        console.log("============华丽的分割线2============");
+        iter.next();
+        console.log("============华丽的分割线3============");
+        iter.next();
+        
+        for (let v of gen()){
+            console.log("============华丽的分割线============");
+            console.log(v);
+        }
+
+    </script>
+</body>
+</html>

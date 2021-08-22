@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        ////////////////////////////////////////
+        // 1.数组的解构
+        ////////////////////////////////////////
+        const F4=['小沈阳','刘能','赵四','宋小宝']
+        let [a,b,c,d] = F4;
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(d);
+
+        ////////////////////////////////////////
+        // 2. 对象的解构
+        ////////////////////////////////////////
+        const zhao = {
+            name: '赵本山',
+            age: 60,
+            xiaopin: function(){
+                console.log("赵本山会演小品.");
+            }
+        }
+        // let {name, age, xiaopin} = zhao;
+        // console.log(name);
+        // console.log(xiaopin);
+        // console.log(xiaopin);
+
+        //zhao.xiaopin();
+        let {xiaopin} = zhao;
+        xiaopin();
+
+        ////////////////////////////////////////
+        // 3. ES6 引入了新的声明字符串的方式：``
+        // 反引号内容中可以直接出现换行符
+        ////////////////////////////////////////
+        let str = `<ul>
+                        <li>沈腾</li>
+                        <li>玛丽</li>
+                        <li>魏翔</li>
+                        <li>艾伦</li>
+                    </ul>`
+        let act="葛优";
+        let msg=`${act}是一个好演员`;
+        console.log(msg);
+
+        ////////////////////////////////////////
+        // 4. ES6允许在大括号里面，直接写入变量和函数，作为对象的属性和方法。
+        ////////////////////////////////////////
+        let name = "极客堂";
+        let change = function (){
+            console.log("我们可以改变你！");
+        }
+
+        const school = {
+            name: name,
+            change, change,
+            origin: function(){
+                console.log("原来的方法定义方式。")
+            },
+            improve(){
+                console.log("ES6支持的方法定义方式。")
+            }
+        }
+
+        console.log(school);
+        school.origin();
+        school.improve();
+
+        ////////////////////////////////////////
+        // 5. ES6允许使用箭头 （=>） 定义函数。
+        ////////////////////////////////////////
+        let fn = function(){
+            console.log("function1");
+        }
+
+        let fn1 = () => {
+            console.log("function2");
+        }
+
+        fn();
+        fn1();
+
+        // 箭头函数中的this是静态的，this始终指向函数声明时所在作用域下的this的值。
+        function getName(){
+            console.log(this.fname);
+        }
+        let getName2 = () => {
+            console.log(this.fname);
+        }
+
+        window.fname = "name in window";
+        const geekA = {
+            fname: "name in geekA"
+        }
+
+        // 直接调用，都返回"name in window"
+        getName(geekA);
+        getName2(geekA);
+
+        // call 方法调用则不同
+        // 由于getName2方法声明时，this指向window，
+        // 所以函数内也一直指向window
+        getName.call(geekA);    //  name in geekA
+        getName2.call(geekA);   //  name in window
+
+        // 不能作为构造实例化对象，
+        // 比如下面的代码会报错：Uncaught Typeerror： Person is not a constructor.
+        // let Person = (name, age) => {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // let me = new Person('xiao', 30);
+        // console.log(me);
+        // let function_arg = () => {
+        //     console.log(arguments);
+        // }
+        // function_arg(1,2,3);
+
+        // 箭头函数的简写
+        // 当形参有且只有一个的时候可以省略小括号：
+        let fn_add = n => {
+            return n+n;
+        }
+        console.log(fn_add(3));
+
+        // 当代码体只有一条语句的时候，可以省略花括号：
+        // 省略花括号时return也必须省略。
+        let fn_pow = n => n*n;
+        console.log(fn_pow(4));
+        
+
+
+    </script>
+
+    
+</body>
+</html>
