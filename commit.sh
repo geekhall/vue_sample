@@ -24,5 +24,6 @@ git add .
 git commit -m "$comment"
 git push github 
 git push gitee
+echo "commit ok"
 
 
