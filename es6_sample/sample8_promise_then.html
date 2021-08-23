@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise 的then方法</title>
+</head>
+<body>
+    
+    <script>
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("用户数据");
+                // reject("出错啦！");
+            }, 1000)
+        });
+
+        // 调用then方法， then方法的返回结果为Promise对象，
+        // 对象状态由回调函数的执行结果决定
+        // 1. 若回调函数中返回的结果是 非Promise类型的属性，状态为成功，返回值为对象的成功的值。
+        // 2. 若回调函数中返回的结果是 Promise类型的属性，则内部Promise的状态决定返回Promise的状态。
+        const result = p.then(value => {
+            console.log(value);
+            // case 1
+            // return 'geekhall';
+            // case 2
+            return new Promise((resolve, reject) => {
+                resolve("OK");
+            });
+            // case 3 抛出错误
+
+        }, reason => {
+            console.error(reason);
+        });
+
+        console.log(result);
+
+    </script>
+</body>
+</html>

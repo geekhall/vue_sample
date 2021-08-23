@@ -8,30 +8,58 @@
 </head>
 <body>
     <script>    
-        // 创建对象
-        const xhr = new XMLHttpRequest();
+        // 不使用Promise的方式：
+        // // 创建对象
+        // const xhr = new XMLHttpRequest();
 
-        // 初始化
-        xhr.open("GET", "https://api.apiopen.top/getJoke");
+        // // 初始化
+        // xhr.open("GET", "https://api.apiopen.top/getJoke");
 
-        // 发送
-        xhr.send();
+        // // 发送
+        // xhr.send();
 
-        // 绑定事件，处理响应结果
-        xhr.onreadystatechange = function(){
-            // 判断
-            if (xhr.readyState == 4){
-                if (xhr.status >= 200 && xhr.status < 300){
-                    // 表示成功
-                    console.log(xhr.response);
-                } else {
-                    // 失败
-                    console.error(xhr.status);
+        // // 绑定事件，处理响应结果
+        // xhr.onreadystatechange = function(){
+        //     // 判断
+        //     if (xhr.readyState == 4){
+        //         if (xhr.status >= 200 && xhr.status < 300){
+        //             // 表示成功
+        //             console.log(xhr.response);
+        //         } else {
+        //             // 失败
+        //             console.error(xhr.status);
+        //         }
+        //     }
+        // }
+
+        const p = new Promise(function(resolve, reject){
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://api.apiopen.top/getJoke");
+            xhr.send();
+
+            // 绑定事件，处理响应结果
+            xhr.onreadystatechange = function(){
+                // 判断
+                if (xhr.readyState == 4){
+                    if (xhr.status >= 200 && xhr.status < 300){
+                        // 表示成功
+                        // console.log(xhr.response);
+                        resolve(xhr.response);
+                    } else {
+                        // 失败
+                        reject(xhr.status);
+                        // console.error(xhr.status);
+                    }
                 }
             }
-        }
+        });
 
-
+        p.then(function(value){
+            console.log(value);
+        }, function(reason){
+            console.error(reason);
+        });
     
     </script>
 </body>
