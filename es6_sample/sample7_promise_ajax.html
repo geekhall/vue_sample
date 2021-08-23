@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise封装Ajax</title>
+</head>
+<body>
+    <script>    
+        // 创建对象
+        const xhr = new XMLHttpRequest();
+
+        // 初始化
+        xhr.open("GET", "https://api.apiopen.top/getJoke");
+
+        // 发送
+        xhr.send();
+
+        // 绑定事件，处理响应结果
+        xhr.onreadystatechange = function(){
+            // 判断
+            if (xhr.readyState == 4){
+                if (xhr.status >= 200 && xhr.status < 300){
+                    // 表示成功
+                    console.log(xhr.response);
+                } else {
+                    // 失败
+                    console.error(xhr.status);
+                }
+            }
+        }
+
+
+    
+    </script>
+</body>
+</html>

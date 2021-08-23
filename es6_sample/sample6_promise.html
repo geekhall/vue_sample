@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <script>
+        // 
+        const p = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                // resolve函数（处理成功）会调用then中的成功处理函数
+                let data = '数据库中的用户数据';
+                resolve(data);
+
+                // reject函数（处理失败）会调用then中的失败处理函数
+                // let err = '数据读取失败';
+                // reject(err);
+            }, 1000)
+        });
+        p.then(function(value){
+            console.log("success.");
+            console.log(value);
+        }, function(reason){
+            console.log("failed");
+            console.log(reason);
+        })
+
+
+        
+    </script>
+</body>
+</html>
