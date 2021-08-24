@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+</head>
+<body>
+    <script>
+        // 声明Map
+        let m = new Map();
+
+        // 添加元素
+        m.set("name", "GeekHall");
+        m.set('change', function() {
+            console.log("learn in GeekHall");
+        });
+        let myKey = {
+            name: "GeekHall",
+            age: 100
+        }
+        // 可以使用对象作为key
+        m.set(myKey, ['beijing', 'shanghai', 'tokyo'])
+
+        // size属性
+        console.log(m.size);
+
+        // 删除元素
+        m.delete('name');
+
+        // 获取元素
+        console.log(m.get(myKey));
+
+        // 遍历
+        for (let v of m){
+            console.log(v);
+        }
+
+        // 清空
+        m.clear();
+
+        console.log(m);
+    </script>
+</body>
+</html>

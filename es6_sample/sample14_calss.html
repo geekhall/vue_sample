@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象继承</title>
+</head>
+<body>
+    <script>
+        function Car(brand, price){
+            this.brand = brand;
+            this.price = price;
+        }
+
+        Car.prototype.drive = function () {
+            console.log("我们去兜风～");
+        }
+
+
+        // 电动汽车
+        function ECar(brand, price, color, power){
+            Car.call(this, brand, price);
+            this.color = color;
+            this.size = size;
+        }
+
+        // 设置子级构造函数的原型
+        ECar.prototype = new Car;
+
+
+    </script>
+</body>
+</html>

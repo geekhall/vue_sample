@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class</title>
+</head>
+<body>
+    <script>
+        /////////////////////////////////////////////////////
+        // ES5 的方式
+        /////////////////////////////////////////////////////
+        // // Car class
+        // function Car(brand, price){
+        //     this.brand = brand;
+        //     this.price = price;
+        // }
+
+        // // 添加方法
+        // Car.prototype.beep = function () {
+        //     console.log(this.brand + " 鸣笛了");
+        // }
+        // Car.prototype.drive = function () {
+        //     console.log("Drive in the road.");
+        // }
+
+        // // 实例化对象
+        // let bmw = new Car('BMW', 300000);
+        // console.log(bmw);
+        // bmw.beep();
+        // bmw.drive();
+
+        /////////////////////////////////////////////////////
+        // ES6 的方式
+        /////////////////////////////////////////////////////
+        class Car{
+            // 静态成员，属于类对象，但不属于实例对象。
+            static name = "汽车";
+            static show(){
+                console.log("举办车展！");
+            }
+
+            // 构造方法（名字固定为constructor不能修改）
+            constructor(brand, price){
+                this.brand = brand;
+                this.price = price;
+            }
+
+            // 成员方法，必须使用这种方式，不能使用ES5的对象完整形式：
+            // drive: function(){} //这样是不可以的。
+            drive(){
+                console.log("Drive in the road.");
+            }
+        }
+
+        let tesla = new Car("TESLA", 200000);
+        console.log(tesla);
+
+        // 静态成员：下面的两个属性是属于函数对象的，并不属于函数对象，
+        Car.power = '汽油车';
+        Car.change = function(){
+            console.log("We can change the world!");
+        }
+
+        // 实例对象是没有函数对象的属性的。
+        //console.log(tesla.name); // undefined
+        //tesla.change();          // Uncaught TypeError: tesla.change is not a function
+        
+        // console.log(tesla.name);    // undefined
+        console.log(Car.name);      // 汽车
+        // tesla.show();               // Uncaught TypeError: tesla.change is not a function
+        Car.show();                 // 举办车展！
+
+    </script>
+</body>
+</html>
