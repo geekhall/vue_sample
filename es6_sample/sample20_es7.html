@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES7新特性</title>
+</head>
+<body>
+    <script>
+        /////////////////////////////////////////////////////
+        // ES7 - 11 新特性
+        /////////////////////////////////////////////////////
+
+        // Array.prototype.includes()
+        const mingzhu = ['西游记', '红楼', '水浒','三国'];
+
+        console.log(mingzhu.includes('三国'));  // true
+        console.log(mingzhu.includes('金瓶梅'));  // false
+
+        // 指数操作符
+        console.log(2**8);          // 256
+
+        /////////////////////////////////////////////////////
+        // ES8新特性
+        /////////////////////////////////////////////////////
+        // async/await
+        // 异步终极解决方案
+        async function getData(){
+            // const res = await api.getTableData();
+            // 返回结果是一个Promise对象
+            // return 'GeekHall';
+            // 抛出错误，返回一个失败的Promise
+            // throw new Error('出错了');
+            return new Promise((resolve, reject) => {
+                resolve('成功的数据');
+            });
+        }
+        
+        const result = getData();
+        // console.log(result); 
+        result.then(value => {
+            console.log(value);
+        }, reason => {
+            console.warn(reason);
+        });
+
+        
+        // // Object.values()
+        // Object.values({a: 1, b:2, c:3});
+
+        // Object.entries({a: 1, b:2, c:3});
+
+        // String padding
+        // padStart 
+        // console.log('geekhall'.padStart(10));
+
+        // console.log('geekhall'.padEnd(10).concat("111"));
+        
+
+    </script>
+</body>
+</html>
