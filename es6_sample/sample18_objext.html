@@ -35,6 +35,15 @@
         console.log(Object.assign(config1, config2));
 
         // Object.setPrototypeOf Object.getPrototypeof
+        const site = {
+            name: "GeekHall"
+        }
+        const company = {
+            city: ['beijing', 'shanghai']
+        }
+
+        Object.setPrototypeOf(site, company);
+        console.log(site);
 
 
     </script>
