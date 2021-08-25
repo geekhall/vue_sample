@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象方法扩展</title>
+</head>
+<body>
+    <script>
+        // Object.is 判断两个值是否完全相等。
+        console.log(Object.is(99, 100));    // false
+        console.log(Object.is(100, 100));   // true
+        console.log(Object.is(NaN, NaN));   // true
+        console.log(NaN === NaN);           // false 
+
+        // Object.assign 对象的合并
+        const config1 = { 
+            host: 'localhost',
+            port: 3306,
+            name: 'root',
+            pass: 'root',
+            param1: 'param1'
+        }
+
+        const config2 = { 
+            host: 'geekhall.com',
+            port: 3316,
+            name: 'geekhall',
+            pass: '123456',
+            param2: 'param2'
+        }
+
+        // 合并两个对象，若重复则使用第二个参数覆盖第一个。
+        console.log(Object.assign(config1, config2));
+
+        // Object.setPrototypeOf Object.getPrototypeof
+
+
+    </script>
+</body>
+</html>

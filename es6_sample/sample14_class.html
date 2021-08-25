@@ -17,16 +17,30 @@
             console.log("我们去兜风～");
         }
 
-
         // 电动汽车
         function ECar(brand, price, color, power){
             Car.call(this, brand, price);
             this.color = color;
-            this.size = size;
+            this.power = power;
         }
 
         // 设置子级构造函数的原型
         ECar.prototype = new Car;
+
+        // 校正
+        ECar.prototype.constructor = ECar;
+
+        // 声明子类的方法
+        ECar.prototype.charge = function(){
+            console.log("我可以充电。");
+        }
+
+        ECar.prototype.autopilot = function(){ 
+            console.log("我可以自动驾驶。");
+        }
+
+        const tesla = new ECar('Tesla', 200000, 'Black', 'Model S');
+        console.log(tesla);
 
 
     </script>

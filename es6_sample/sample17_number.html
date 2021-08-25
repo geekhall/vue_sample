@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数值扩展</title>
+</head>
+<body>
+    <script>
+        // Number.EPSILON 是JavaScript表示的最小精度，接近于2.220446049E-16
+        console.log(Number.EPSILON);
+        function equal(a, b){
+            if(Math.abs(a-b) < Number.EPSILON){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        console.log(0.1 + 0.2 === 0.3);     // false 
+        console.log(equal(0.1 + 0.2, 0.3));  // true 
+
+
+        // 二进制和八进制
+        let a = 0b1010;
+        let b = 0o77;
+        let c = 0xff;
+        let d = 100;
+
+        console.log(a); // 10
+        console.log(b); // 63
+        console.log(c); // 255
+        console.log(d); // 100
+
+
+        // Number.isFinite 检测一个数值是否为有限数。
+        console.log(Number.isFinite(100));          // true 
+        console.log(Number.isFinite(100/0));        // false
+        console.log(Number.isFinite(Infinity));     // false
+
+        // Number.isNaN 检测一个数值是否为NaN
+        console.log(Number.isNaN(123));             // false
+        console.log(Number.isNaN(Number.NaN));      // true 
+
+        // Number.parseInt Number.parseFloat字符串转整数
+        console.log(Number.parseInt('iloveu1314')); //  NaN
+        console.log(Number.parseInt('5211314loveu')); //  5211314
+        console.log(Number.parseFloat('3.141592653589793')); //  3.141592653589793
+        
+        // Number.isInteger 判断一个数是否为整数
+        console.log(Number.isInteger(0.5));     // false
+        console.log(Number.isInteger(1));       // true
+
+        // Math.trunc 将数字的小数部分抹掉
+        console.log(Math.trunc(3.14));      // 3
+
+
+        // Math.sign 判断一个数到底为正数、负数、还是零
+        console.log(Math.sign(-10));    // -1
+        console.log(Math.sign(0));      // 0
+        console.log(Math.sign(20));     // 1
+
+
+    </script>
+</body>
+</html>

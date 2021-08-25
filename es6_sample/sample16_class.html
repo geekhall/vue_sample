@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get和Set</title>
+</head>
+<body>
+    <script>
+        class Car{
+            get price(){
+                console.log("价格属性被读取了");
+                return 1000000;
+            }
+            set price(val){
+                console.log("价格属性被修改了");
+                console.log(val);
+            }
+        }
+
+        // 实例化对象
+        let tesla = new Car();
+        console.log(tesla.price); // 价格属性被读取了
+        tesla.price = '200000';
+        console.log(tesla.price);
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 Class</title>
+</head>
+<body>
+    <script>
+        class Car{
+            constructor(brand, price){
+                this.brand = brand;
+                this.price = price;
+            }
+
+            // 父类的成员属性
+            drive(){
+                console.log("我可以开");
+            }
+        }
+
+        class ECar extends Car {
+            constructor(brand, price, color, module){
+                super(brand, price);
+                this.color = color;
+                this.module = module;
+            }
+
+            charge(){
+                console.log("充电");
+            }            
+            autoPilot(){
+                console.log("自动驾驶");
+            }
+            drive(){
+                console.log("我百公里加速3秒");
+            }
+        }
+
+        const xiaopeng = new ECar('小鹏', 150000, 'Red', 'SUV');
+        console.log(xiaopeng);
+        xiaopeng.drive();
+
+    </script>
+</body>
+</html>
