@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私有属性</title>
+</head>
+<body>
+    <script>
+        class Girl{
+            // 公有属性
+            name;
+
+            // 私有属性
+            #age;
+            #weight;
+
+            intro(){
+                console.log(this.name);
+                console.log(this.#age);
+                console.log(this.#weight);
+            }
+            constructor(name, age, weight){
+                this.name = name;
+                this.#age = age;
+                this.#weight = weight;
+            }
+        }
+
+        // 实例化
+        const g = new Girl('puiyi', 18, '45kg');
+        console.log(g);
+        // console.log(g.#weight); // SyntaxError: private field must be declared in an enclosing class.
+        g.intro();      // 可以正常打印
+    </script>
+</body>
+</html>
