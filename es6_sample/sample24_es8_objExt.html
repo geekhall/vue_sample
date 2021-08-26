@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES8 Object 方法扩展</title>
+</head>
+<body>
+    
+    <script>
+        // 声明对象
+        const site = {
+            name: "GeekHall",
+            cities: ['北京', 'shanghai', 'tokyo'],
+            lessons: ['java', 'python', 'php']
+        }
+
+        // 获取对象所有的键
+        console.log(Object.keys(site)); 
+
+        // 获取对象所有的值
+        console.log(Object.values(site));
+
+        // entries
+        console.log(Object.entries(site));
+
+        // entries的返回结果是一个数组，方便创建一个Map
+        const m = new Map(Object.entries(site));
+
+        console.log(m);
+        console.log(m.get('cities'));
+
+        // Object.getOwnPropertyDescriptors
+        // 返回结果是一个对象所有自身属性的描述对象
+        console.log(Object.getOwnPropertyDescriptors(site));
+
+        const obj = Object.create(null, {
+            name: {
+                // 设置值
+                value: 'GeekHall',
+                // 属性特性
+                writable: true,
+                configurable: true,
+                enumerable: true
+            }
+        });
+        console.log(obj);
+    </script>
+</body>
+</html>

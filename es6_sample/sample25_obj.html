@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象展开</title>
+</head>
+<body>
+    <script>
+        // Rest参数与spread扩展运算符在ES6中已经引入，不过ES6中只针对数组
+        // 在ES9中为对象提供了像数组一样的rest参数和扩展运算符。
+        function connect({host, port, username, password}){
+            console.log(host);
+            console.log(port);
+            console.log(username);
+            console.log(password);
+        }
+
+        connect({
+            host: "127.0.0.1",
+            port: 3306,
+            username: 'root',
+            password: '123456'
+        })
+
+        function connect1({host, port, ...user}){
+            console.log(host);
+            console.log(port);
+            console.log(user);
+        }
+
+        connect1({
+            host: "127.0.0.1",
+            port: 3306,
+            username: 'root',
+            password: '123456',
+            type: 'master'
+        })
+
+        // 对象的展开和合并：
+        const skillOne = {
+            q: '天音破'
+        }
+
+        const skillTwo = {
+            w: '金钟罩'
+        }
+
+        const skillThree = {
+            e: '天雷破'
+        }
+
+        const skillFour = {
+            r: '神龙摆尾'
+        }
+
+        const mengseng = {...skillOne, ...skillTwo, ...skillThree, ...skillFour};
+        console.log(mengseng);
+
+
+
+        /////////////////////////////////////////////////////
+        // 正则扩展 - 分组
+        /////////////////////////////////////////////////////
+        // 正则扩展-命名捕获分组(不使用分组)
+        let str = '<a href="http://www.geekhall.cn">极客堂</a>';
+
+        const reg = /<a href="(.*)>(.*)<\/a>/;
+
+        const result = reg.exec(str);
+        console.log(result);
+        console.log(result[1]); // http://www.geekhall.cn
+        console.log(result[2]); // 极客堂
+
+
+        // 正则扩展-命名捕获分组(使用分组)
+        const reg1 = /<a href="(?<url>.*)">(?<text>.*)<\/a>/;
+        
+        const result1 = reg1.exec(str);
+        console.log(result1);
+        console.log(result1.groups.url);    // http://www.geekhall.cn
+        console.log(result1.groups.text);   // 极客堂
+
+
+
+        /////////////////////////////////////////////////////
+        // 正则扩展 - 反向断言
+        /////////////////////////////////////////////////////
+        // 正向断言
+        let str2 = 'JS1314极客堂520哈哈哈哈哈';
+        const reg2 = /\d+(?=哈)/;
+        const result2 = reg2.exec(str2);
+        console.log(result2);
+        console.log(result2[0]); // 520
+
+        // 不加断言
+        const reg3 = /\d+/;
+        const result3 = reg3.exec(str2);
+        console.log(result3);
+        console.log(result3[0]); // 1314
+
+
+        // 反向断言
+        const reg4 = /(?<=堂)\d+/;
+        const result4 = reg4.exec(str2);
+        console.log(result4);
+        console.log(result4[0]); // 520
+
+
+        /////////////////////////////////////////////////////
+        // ES10 Object.fromEntries
+        /////////////////////////////////////////////////////
+
+        const arr = Object.fromEntries([
+            ['name', '极客堂'],
+            ['xueke', ' Java, Python, Php']
+        ]);
+
+        // Map
+        const m = new Map();
+        m.set('name', 'GeekHall');
+        const result5 = Object.fromEntries(m);
+
+        console.log(result5);
+
+        //
+        const arr3 = [1,2,3,4,[5,6]];
+        console.log(arr3.flat(2));
+
+
+        const arr4 = [1,2,3,4]
+        const r = arr4.map(item => [item*10]);
+        const resultFlat = arr4.flatMap(item => [item*10]);  // 返回一个二维数组
+        console.log(r);
+        console.log(resultFlat);
+    </script>
+</body>
+</html>
