@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 双向数据绑定</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>单向数据绑定</h1>
+        <input type="text" v-bind:value="name1">
+        <hr/>
+        <h1>双向数据绑定</h1>
+        <input type="text" v-model:value="name2">
+    </div>
+    <script>
+        Vue.config.productionTip = false  // 阻止 vue在启动时生成生产提示。
+
+        // 创建 Vue 实例
+        new Vue({
+            el:'#root',
+            data:{
+                name1: 'Vue',
+                name2: 'Vue'
+            }
+        });
+    </script>
+</body>
+</html>
