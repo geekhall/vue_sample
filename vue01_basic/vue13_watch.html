@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听属性</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>侦听属性</h2>
+        <h2>今天天气很{{info}}</h2>
+        <button @click="changeWeather">切换天气</button>
+        <hr/>
+        <h3>a= {{numbers.a}}</h3>
+        <button @click="add">点我让a++</button>
+        <hr/>
+        <h3>numbers2.a= {{numbers1.a}}</h3>
+        <button @click="adda">点我让a++</button>
+        <h3>numbers2.b= {{numbers1.b}}</h3>
+        <button @click="addb">点我让b++</button>
+    </div>
+    
+    <script>
+        Vue.config.productionTip = false
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true,
+                numbers:{
+                    a:1,
+                    b:2
+                },
+                numbers1:{
+                    a:1,
+                    b:2
+                }
+            },
+            computed: {
+                info(){
+                    return this.isHot ? "炎热" : "凉爽"
+                }
+            },
+            methods: {
+                changeWeather(){
+                    this.isHot = !this.isHot
+                },
+                add(){
+                    this.numbers.a++;
+                },
+                adda(){
+                    this.numbers1.a++;
+                },
+                addb(){
+                    this.numbers1.b++;
+                }
+            },
+            watch: {
+                isHot: {
+                    immediate: true, // 初始化时让handler调用一下
+                    // handler函数在isHot发生改变的时候调用。
+                    handler(newVal, oldVal){
+                        console.log('isHot被修改了', newVal, oldVal);
+                    }
+                },
+                // 监视多级结构中某个属性的变化
+                'numbers.a':{
+                    handler(){
+                        console.log('a被改变了');
+                    }
+                },
+                'numbers1':{
+                    deep: true, // 深度监视，监视对象中所有属性的变化，当numbers2.a 或者numbers2.b发生改变时可以检测到。默认为false。
+                    handler(){
+                        console.log('numbers2被改变了')
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

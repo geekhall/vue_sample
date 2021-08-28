@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch与computed对比</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>watch与computed对比</h2>
+        姓：<input type="text" v-model="firstName"/><br/><br/>
+        名：<input type="text" v-model="lastName"/><br/><br/>
+        <!-- 全名： <span>{{fullName()}}</span> -->
+        全名： <span>{{fullName}}</span>
+    </div>
+    
+    <script>
+        Vue.config.productionTip = false
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: "月",
+                lastName: "白",
+                fullName: "月-白"
+            },
+            watch: {
+                firstName(val){
+                    this.fullName = val + '-' + this.lastName
+                },
+                lastName(val){
+                    this.fullName = this.firstName + '-' + val
+                }
+            }
+        });
+    </script>
+</body>
+</html>
