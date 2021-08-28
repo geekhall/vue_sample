@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用计算属性实现姓名合并</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>使用计算属性实现姓名合并</h2>
+        姓：<input type="text" v-model="firstName"/><br/><br/>
+        名：<input type="text" v-model="lastName"/><br/><br/>
+        <!-- 全名： <span>{{fullName()}}</span> -->
+        全名： <span>{{computedFullName}}</span>
+    </div>
+    
+    <script>
+        Vue.config.productionTip = false  // 阻止 vue在启动时生成生产提示。
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: '赵',
+                lastName: '四'
+            },
+            methods: {
+                fullName(){
+                    return this.firstName + '-' + this.lastName;
+                }
+            },
+            computed: {
+                
+                computedFullName:{
+                    // Getter
+                    // get什么时候调用：1.初次  2.计算属性所依赖的数据发生变化时
+                    // 注意这里不能使用箭头函数，否则this取不到vm；
+                    get(){
+                        return this.firstName + '=' + this.lastName;
+                    },
+                    set(value){
+                        const arr = value.split('=')
+                        this.firstName = arr[0]
+                        this.lastName = arr[1]
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>键盘事件处理</title>
+    <title>使用计算属性的简写</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
     <div id="root">
-        <h2>欢迎来到{{name}}</h2>
-        <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo"/>
+        <h2>使用计算属性的简写</h2>
+        姓：<input type="text" v-model="firstName"/><br/><br/>
+        名：<input type="text" v-model="lastName"/><br/><br/>
+        全名： <span>{{fullName}}</span>
     </div>
     
     <script>
@@ -18,12 +20,12 @@
         let vm = new Vue({
             el: '#root',
             data: {
-                name: '极客堂'
+                firstName: '赵',
+                lastName: '四'
             },
-            methods: {
-                showInfo(e){
-                    // if (e.keyCode == 13)    // 只有当按下回车时才显示内容
-                    console.log(e.target.value); 
+            computed: {  
+                fullName(){
+                    return this.firstName + '-' + this.lastName;
                 }
             }
         });
