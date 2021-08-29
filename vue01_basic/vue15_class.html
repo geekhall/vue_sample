@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定样式</title>
+    <style>
+        .basic{
+            width:300px;
+            height:200px;
+            border: solid green 3px;
+        }
+        .cyan{
+            background: cyan;
+        }
+        .green{
+            background:green;
+        }
+        .yellow{
+            background:yellow;
+        }
+        .center{
+            text-align:center;
+            padding-top: 50px;
+        }
+        .big{
+            font-size:50px;
+        }
+        .bold{
+            font-weight: bold;
+            color:rebeccapurple;
+        }
+
+    </style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>绑定样式</h2>
+        <!-- 绑定变量的写法 ，适用于：样式的类名不确定，需要动态指定-->
+        <div class="basic" :class="bgcolor" @click="changeColor">{{name}}</div>
+        <hr>
+        <!-- 绑定样式数组写法，适用于要绑定的样式名字和个数都不确定的情况 -->
+        <div class="basic" :class="styles" @click="changeStyle">{{name}}</div>
+        <hr>
+        <!-- 绑定样式对象写法，适用于要绑定的样式个数确定，名字也确定的情况，但需要动态决定是否使用 -->
+        <div class="basic" :class="classObj">{{name}}</div>
+        <hr>
+        <div class="basic" :style="styleObj">{{name}}</div>
+    </div>
+    
+    <script>
+        Vue.config.productionTip = false
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: "极客堂",
+                bgcolor: 'yellow',
+                styles: ['center', 'big', 'bold'],
+                classObj: {
+                    big: true,
+                    bold: false,
+                    center: true,
+                },
+                styleObj: {
+                    // 注意这里使用驼峰法命名，对应css中的font-size属性
+                    fontSize: '80px',
+                    color: 'red',
+                    // 注意这里使用驼峰法命名，对应css中的background-color属性
+                    backgroundColor: 'blue'
+                }
+            },
+            methods: {
+                changeColor(){
+                    const arr = ['yellow', 'green', 'cyan']
+                    let i = Math.floor(Math.random()*3);
+                    this.mood = arr[i];
+                },
+                changeStyle(){
+                    console.log("change style");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
