@@ -11,7 +11,7 @@
     <div id="root">
         <h2>v-for</h2>
         <ul>
-            <li v-for="book in books">{{book}}</li>
+            <li v-for="(book, index) in books">{{index}} : {{book.name}} - {{book.author}}</li>
         </ul>
     </div>
     
@@ -20,7 +20,23 @@
         const vm = new Vue({
             el: '#root',
             data: {
-                books: ['三国演义','红楼梦', '水浒传', '西游记']
+                books: [
+                    {
+                        name: '三国演义',
+                        author: '罗贯中'
+                    },
+                    {
+                        name: '红楼梦',
+                        author: '曹雪芹'
+                    },
+                    {
+                        name: '水浒传',
+                        author: '施耐庵'
+                    },
+                    {
+                        name: '西游记',
+                        author: '吴承恩'
+                    }]
             }
         });
     </script>

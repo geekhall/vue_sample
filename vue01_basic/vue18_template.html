@@ -4,24 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>v-if</title>
+    <title>template</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
     <div id="root">
-        <h2>v-if</h2>
-        <p v-if="type==='A'">A</p>
-        <p v-else-if="type==='B'">B</p>
-        <p v-else-if="type==='C'">C</p>
-        <p v-else="type==='D'">D</p>
+        <h2>template</h2>
+
+        <!-- 组件： 传递给组件的值：props -->
+        <geekhall v-for="item in items" v-bind:geek="item">
+
+        </geekhall>
     </div>
     
     <script>
         Vue.config.productionTip = false
+        Vue.component("geekhall", {
+            props: ['geek'],
+            template: '<li>{{geek}}</li>'
+        });
+
         const vm = new Vue({
             el: '#root',
             data: {
-                type: 'B'
+                items: ["Java", "Python", "Django", "Vue"]
             }
         });
     </script>
