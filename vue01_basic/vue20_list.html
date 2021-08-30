@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>列表过滤</h2>
+        <input type="text" name="search" id="search" placeholder="搜索" v-model='keyword' />
+        <ul>
+            <li v-for="(p, index) of filPersons" :key="index">
+                {{index}}. {{p.name}} - {{p.age}} （{{p.sex}}）
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false
+        // 用watch实现
+        /*
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                keyword: '',
+                persons: [{
+                        id: '001',
+                        name: '马冬梅',
+                        age: 18,
+                        sex: '女'
+                    },
+                    {
+                        id: '002',
+                        name: '周冬雨',
+                        age: 19,
+                        sex: '女'
+                    },
+                    {
+                        id: '003',
+                        name: '周杰伦',
+                        age: 20,
+                        sex: '男'
+                    },
+                    {
+                        id: '003',
+                        name: '冯德伦',
+                        age: 21,
+                        sex: '男'
+                    },
+                ],
+                filPersons: []
+            },
+            watch: {
+                keyword: {
+                    immediate: true,
+                    handler(val) {
+                        this.filPersons = this.persons.filter((p) => {
+                            return p.name.indexOf(val) !== -1
+                        })
+                    }
+
+                }
+            }
+        });
+        */
+
+        // 用计算属性实现
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                keyword: '',
+                persons: [{
+                        id: '001',
+                        name: '马冬梅',
+                        age: 18,
+                        sex: '女'
+                    },
+                    {
+                        id: '002',
+                        name: '周冬雨',
+                        age: 19,
+                        sex: '女'
+                    },
+                    {
+                        id: '003',
+                        name: '周杰伦',
+                        age: 20,
+                        sex: '男'
+                    },
+                    {
+                        id: '003',
+                        name: '冯德伦',
+                        age: 21,
+                        sex: '男'
+                    },
+                ]
+            },
+            computed: {
+                filPersons() {
+                    return this.persons.filter((p) => {
+                        return p.name.indexOf(this.keyword) !== -1
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
