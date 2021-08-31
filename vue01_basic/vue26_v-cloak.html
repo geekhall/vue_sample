@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-cloak</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>v-cloak</h2>
+        <!-- 插值语法 更灵活 -->
+        <div>你好，{{name}}</div>
+        <!-- v-text会替换掉节点中的内容，插值语法不会 -->
+        <div v-text="name">这里的内容不会显示</div>
+        <div v-text="text"></div>
+    </div>
+
+
+    <script>
+        Vue.config.productionTip = false
+        new Vue({
+            el: '#root',
+            data: {
+                name: '极客堂',
+                text: '<h3>这里的标签会被显示</h3>'
+            }
+        })
+
+    </script>
+</body>
+
+</html>

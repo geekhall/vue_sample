@@ -17,20 +17,30 @@
 
         <!-- 计算属性实现 -->
         <h2>格式化之后的时间: {{formated_time}}</h2>
-        <!-- 函数实现 -->
-        <h2>格式化之后的时间: {{formated_time1}}</h2>
+        <!-- methods实现 -->
+        <h2>格式化之后的时间: {{getFmtTime()}}</h2>
+        <!-- 过滤器实现 -->
+        <h2>格式化之后的事件：{{time | timeformater}}</h2>
+        <h2>格式化之后的事件：{{time | time_formater('YYYY_MM_DD') | mySlice()}}  </h2>
+    </div>
+
+    <div id="root2">
+        <h2>hello {{ msg | myGlobalSlice }}</h2>
     </div>
 
     <script>
         Vue.config.productionTip = false
+        // 全局过滤器
+        Vue.filter('myGlobalSlice', function(value){
+            return value.slice(0, 4)
+        })
         new Vue({
             el: '#root',
             data: {
                 time: Date.now()
             },
             methods:{
-                formated_time1(){
-                    
+                getFmtTime(){
                     return dayjs(Date.now()).format('YYYY-MM-DD hh:mm:ss')
                 }
             },
@@ -38,8 +48,27 @@
                 formated_time(){
                     return dayjs(Date.now()).format('YYYY-MM-DD hh:mm:ss')
                 }
+            },
+            // 局部过滤器
+            filters: {
+                timeformater(){
+                    return dayjs(Date.now()).format('YYYY-MM-DD hh:mm:ss')
+                },
+                time_formater(value, format='YYYY-MM-DD hh:mm:ss'){
+                    return dayjs(value).format(format)
+                },
+                mySlice(value){
+                    return value.slice(0, 4)
+                }
             }
         })
+        new Vue({
+            el: '#root2',
+            data: {
+                msg: 'geekhall'
+            }
+        })
+
     </script>
 </body>
 
