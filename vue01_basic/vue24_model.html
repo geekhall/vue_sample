@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model综合案例</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>v-model综合案例</h2>
+        <form @submit.prevent="demo">
+            账号：<input type="text" v-model.trim="userInfo.account" /><br /><br />
+            密码：<input type="password" v-model="userInfo.password" /><br /><br />
+            年龄：<input type="number" v-model.number="userInfo.age" /><br /><br />
+            性别：
+            男<input type="radio" name="sex" value="male" v-model="userInfo.sex">
+            女<input type="radio" name="sex" value="female" v-model="userInfo.sex"><br /><br />
+            爱好：
+            听歌<input type="checkbox" value="music" v-model="userInfo.hobby">
+            学习<input type="checkbox" value="study" v-model="userInfo.hobby">
+            看电影<input type="checkbox" value="movie" v-model="userInfo.hobby">
+            <br /><br />
+            学习语言：
+            <select v-model="userInfo.language">
+                <option value="">请选择语言</option>
+                <option value="c">C</option>
+                <option value="Java">Java</option>
+                <option value="python">Python</option>
+            </select><br><br>
+            其他信息：
+            <textarea v-model="userInfo.other" cols="30" rows="10"></textarea>
+            <br><br>
+            <input type="checkbox" v-model="userInfo.agree">阅读并接受<a href="https://geekhall.cn">《用户协议》</a>
+            <button>提交</button>
+        </form>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false
+        new Vue({
+            el: '#root',
+            data: {
+                userInfo: {
+                    account: 'admin',
+                    password: '123',
+                    age: '',
+                    sex: 'female',
+                    hobby: ['study', 'movie'],
+                    language: 'python',
+                    other: '其他信息',
+                    agree: true
+                }
+            },
+            methods: {
+                demo() {
+                    console.log("submited ")
+                    console.log(JSON.stringify(this.userInfo))
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤器</title>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>过滤器</h2>
+        <h2>格式化之前的时间: {{time}}</h2><br>
+
+        <!-- 计算属性实现 -->
+        <h2>格式化之后的时间: {{formated_time}}</h2>
+        <!-- 函数实现 -->
+        <h2>格式化之后的时间: {{formated_time1}}</h2>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false
+        new Vue({
+            el: '#root',
+            data: {
+                time: Date.now()
+            },
+            methods:{
+                formated_time1(){
+                    
+                    return dayjs(Date.now()).format('YYYY-MM-DD hh:mm:ss')
+                }
+            },
+            computed: {
+                formated_time(){
+                    return dayjs(Date.now()).format('YYYY-MM-DD hh:mm:ss')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
