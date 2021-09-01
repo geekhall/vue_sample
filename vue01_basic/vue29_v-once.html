@@ -5,28 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>v-cloak</title>
-    <style>
-        [v-cloak]{
-            display: none;
-        }
-    </style>
+    <title>v-once</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 
 <body>
     <div id="root">
-        <h2>v-cloak</h2>
-        <h2 v-cloak>{{name}}</h2>
+        <h2>v-once</h2>
+        <h2 v-once>初始化的n值是：{{n}}</h2>
+        <button @click="n++">n+1</button>
     </div>
-    <!-- <script type="text/javascript" src="../js/vue.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
 
     <script>
         Vue.config.productionTip = false
         new Vue({
             el: '#root',
             data: {
-                name: '极客堂'
+                name: '极客堂',
+                n: 1
             }
         })
     </script>
