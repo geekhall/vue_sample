@@ -23,10 +23,35 @@
         <hr>
         <input type="text" v-fbind:value="n">
     </div>
-
+    <hr>
+    <div id="root2">
+        <h2>当前的x值是{{x}}</h2>
+        <input type="text" v-gfbind:value="x">
+    </div>
 
     <script>
         Vue.config.productionTip = false
+        // 全局的自定义指令
+        Vue.directive('gfbind', {
+                    // 下面回调函数中的this都是Window
+                    // 指令与元素成功绑定时（一上来初始化）
+                    bind(element, binding){
+                        console.log('bind')
+                        element.value = binding.value
+                    },
+                    // 指令所在元素被插入页面时
+                    inserted(element, binding){
+                        console.log('inserted')
+                        element.focus()
+                    },
+                    // 指令所在模板被重新解析时
+                    update(element, binding){
+                        console.log('update')
+                        element.focus()
+                        element.value = binding.value
+                    }
+                })
+
         new Vue({
             el: '#root',
             data: {
@@ -41,6 +66,8 @@
                     // console.log(element instanceof HTMLElement )    // true
                     element.innerText = binding.value * binding.value
                 },
+                // 正常写法如下，也可以省略function简写成 'big-number'(element, binding){}
+                // Vue推荐使用“-”来连接指令之间的多个单词，不推荐使用驼峰法。
                 'big-number': function(element,  binding){
                     // console.log(element, binding.value)              // span 1
                     // console.log(element instanceof HTMLElement )    // true
@@ -51,6 +78,7 @@
                 //     element.focus()  // 这里写成函数的方式就实现不了这个功能了。
                 // }
                 fbind:{
+                    // 下面回调函数中的this都是Window
                     // 指令与元素成功绑定时（一上来初始化）
                     bind(element, binding){
                         console.log('bind')
@@ -68,6 +96,13 @@
                         element.value = binding.value
                     }
                 }
+            }
+        })
+
+        new Vue({
+            el: '#root2',
+            data: {
+                x: 2
             }
         })
     </script>
