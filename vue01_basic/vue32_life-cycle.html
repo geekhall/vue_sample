@@ -17,6 +17,7 @@
          -->
         <h2>当前的n值是{{n}}</h2>
         <button @click="add">点我n+1</button>
+        <button @click="bye">销毁Vue</button>
     </div>
     <hr>
 
@@ -30,9 +31,47 @@
             },
             methods: {
                 add(){
+                    console.log('add')
                     this.n++
+                },
+                bye(){
+                    console.log('bye')
+                    this.$destroy()
                 }
+            },
+            beforeCreate(){
+                console.log('beforeCreate')
+            },
+            created(){
+                console.log('created')
+            },
+            beforeMount(){
+                console.log('beforeMount')
+                // 页面呈现的是未经编译的虚拟DOM
+                // debugger
+            },
+            beforeUpdate(){
+                console.log('beforeUpdate')
+                // 此时，数据是新的，但页面是旧的(vm.n=2但页面上显示1)
+                console.log(this.n)
+                // debugger
+            },
+            updated(){
+                console.log('updated')
+                // 此时，数据是新的，页面也是新的(vm.n=2， 页面上显示2)
+                console.log(this.n)
+            },
+            beforeDestroy(){
+                console.log('beforeDestroy')
+            },
+            destroyed(){
+                // 完全销毁一个实例（vm），清理它与其他实例的连接，接棒它的全部指令以及自定义的事件监听器。
+                // 大多数情况下不应该调用这个歌方法，最好使用v-if 和v-for以数据驱动的方式控制子组件的生命周期
+                console.log('destroy')
             }
+
+            
+
         })
     </script>
 </body>
