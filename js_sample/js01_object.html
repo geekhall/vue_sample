@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 对象</title>
+</head>
+<body>
+    <script>
+        console.log("JavaScript 对象")
+        let message = "Hello Object "
+        console.log(message.length);
+        // 创建JavaScript对象的几种方法：
+        // 1. 使用Object定义并创建对象的实例
+        let boolObject = new Object( true );
+        console.log(boolObject)
+
+        zhangsan = new Object();
+        zhangsan.name="king"
+        zhangsan.age = 18
+        zhangsan.sex = 'male'
+        console.log(zhangsan)
+
+        lisi = {name: '李四', age: 30, sex: '不明'}
+        console.log(lisi)
+
+        // 2. 使用函数来定义对象，然后创建新的对象实例。
+        function person(name, age, sex){
+            this.name = name
+            this.age = age
+            this.sex = sex
+        }
+
+        let song = new person('宋小宝',20, '男')
+        let ma = new person('马丽',30, '女')
+        
+        console.log(song)
+        console.log(ma)
+
+        // 可以使用for循环来遍历对象的属性和属性值
+        for (v in song){
+            console.log(v, song[v])
+        }
+
+        
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
