@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "jquery": "^3.6.0"
+  },
+  "name": "es6_sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "keywords": [],
+  "description": ""
+}

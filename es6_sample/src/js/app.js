@@ -1,13 +1,16 @@
-// import $ from 'jquery'; // 等价于 const $ = require("jquery");
+// 入口文件
+import * as m1 from './m1.js'
+import * as m2 from './m2.js'
+import * as m3 from './m3.js'
+console.log(m1)
+console.log(m2)
+console.log(m3)
 
-// $('body').css({'background', 'pink'});
+import $ from 'jquery'
 
-// import * as m1 from './hello.js'
-
-
-const btn = document.getElementById('btn');
-btn.onclick = function(){
-    import('./hello.js').then(module => {
-        console.log(module)
-    })
-}
+// const btn = document.getElementById('btn');
+// btn.onclick = function(){
+//     import('./hello.js').then(module => {
+//         console.log(module)
+//     })
+// }
