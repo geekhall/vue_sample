@@ -8,11 +8,37 @@
 </head>
 <body>
     <script type="module">
-        // 由于同源策略限制，报错
-        // import * as sample19_module from "./sample19_module.js";
-        // console.log(sample19_module);
-        // import * as m1 from "./m1.js";
-        // console.log(m1);
+        // 注意这里如果直接使用file协议打开会因为同源策略限制而报错，
+        // 需要使用GoLive插件或者放到Web服务器中
+        // 引入m1.js模块的内容（通用方式）
+        // import * as m1 from "./src/js/m1.js"
+        // console.log(m1)
+
+        // // 引入m2.js模块的内容
+        // import * as m2 from "./src/js/m2.js"
+        // console.log(m2)
+        
+        // // 引入m2.js模块的内容
+        // import * as m3 from "./src/js/m3.js"
+        // console.log(m3)
+        
+        // 使用解构赋值的方式引入
+        // import {site, module_function} from "./src/js/m1.js"
+        // console.log(site)
+        // console.log(module_function)
+
+        // import {site2 as website, module_function2} from "./src/js/m2.js"
+        // console.log(website)
+        // console.log(module_function2)
+
+        // 引入方式三，针对默认暴露的写法
+        // import {default as m3} from './src/js/m3.js'
+        // console.log(m3)
+
+        // 简便形式：
+        import m3 from './src/js/m3.js'
+        console.log(m3)
+
     </script>
 </body>
 </html>

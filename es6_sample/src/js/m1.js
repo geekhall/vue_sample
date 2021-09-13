@@ -1,7 +1,5 @@
-let school='GeekHall';
+export let site='GeekHall';
 
-function func1(){
-    console.log("function in the module!");
+export function module_function(){
+    console.log("module_function方法内部内容");
 }
-
-export {school, func1}
