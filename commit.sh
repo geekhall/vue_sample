@@ -3,7 +3,7 @@
 # author   : moonwhite
 # version  : v1.0.0
 # function : 1. Get current date and time.
-#            2. commit and push to github. 
+#            2. commit and push to github.
 #########################################################
 usage()
 {
@@ -22,8 +22,9 @@ fi
 
 git add .
 git commit -m "$comment"
-git push github 
+git push github
 git push gitee
+git push gitlab
 echo "commit ok"
 
 
